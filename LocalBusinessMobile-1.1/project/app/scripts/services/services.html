@@ -1,0 +1,57 @@
+<ion-view view-title="Services">
+	<ion-content>
+		<ion-refresher
+			pulling-text="Pull to refresh..."
+			on-refresh="vm.doRefresh()">
+		</ion-refresher>
+
+		<!--
+		 | http://stackoverflow.com/questions/27239735/ionic-framwork-gridlayout-with-multiple-rows-and-column-on-which-buttons-placed
+		 | http://stackoverflow.com/questions/23779773/angularjs-loops-and-formatting/23780288#23780288
+		 -->
+		<div ng-repeat="service in vm.services" ng-if="$index%2==0" class="row">
+			<div class="card col" ng-click="vm.showServiceDetails(vm.services[$index]._id)">
+				<div class="item">
+					<h2>{{vm.services[$index].title}}</h2>
+				</div>
+
+				<div class="item item-image service-image-container">
+					<img ng-if="!!vm.services[$index].media[0]" ng-src="{{vm.services[$index].media[0].uri}}">
+					<img ng-if="!vm.services[$index].media[0]"
+						src="https://placeholdit.imgix.net/~text?txtsize=15&txt=No%20image&w=300&h=300">
+				</div>
+
+				<div class="item item-icon-left">
+					<i class="icon ion-arrow-right-c"></i>
+					Read more
+				</div>
+			</div>
+
+			<div class="card col" ng-click="vm.showServiceDetails(vm.services[$index + 1]._id)"
+				ng-style="{'visibility': !!vm.services[$index + 1] ? 'visible' : 'hidden'}">
+				<div class="item">
+					<h2>{{vm.services[$index + 1].title}}</h2>
+				</div>
+
+				<div class="item item-image service-image-container">
+					<img ng-if="!!vm.services[$index + 1].media[0]" ng-src="{{vm.services[$index + 1].media[0].uri}}">
+					<img ng-if="!vm.services[$index + 1].media[0]"
+						src="https://placeholdit.imgix.net/~text?txtsize=15&txt=No%20image&w=300&h=300">
+				</div>
+
+				<div class="item item-icon-left">
+					<i class="icon ion-arrow-right-c"></i>
+					Read more
+				</div>
+			</div>
+
+		</div>
+
+		<ion-infinite-scroll
+			on-infinite="vm.loadMore()"
+			immediate-check="false"
+			ng-if="vm.canLoadMore">
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>

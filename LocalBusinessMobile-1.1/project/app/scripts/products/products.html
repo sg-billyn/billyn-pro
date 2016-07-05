@@ -1,0 +1,54 @@
+<ion-view view-title="Products">
+	<ion-content>
+		<ion-refresher
+			pulling-text="Pull to refresh..."
+			on-refresh="vm.doRefresh()">
+		</ion-refresher>
+
+		<!--
+		 | http://stackoverflow.com/questions/27239735/ionic-framwork-gridlayout-with-multiple-rows-and-column-on-which-buttons-placed
+		 | http://stackoverflow.com/questions/23779773/angularjs-loops-and-formatting/23780288#23780288
+		 -->
+		<div ng-repeat="p in vm.products" ng-if="$index%2==0" class="row">
+			<div class="card col" ng-click="vm.showProductDetails(vm.products[$index]._id)">
+				<div class="item">
+					<h2>{{vm.products[$index].title}}</h2>
+				</div>
+
+				<div class="item item-image product-image-container">
+					<img ng-if="!!vm.products[$index].media[0]" ng-src="{{vm.products[$index].media[0].uri}}">
+					<img ng-if="!vm.products[$index].media[0]"
+						src="https://placeholdit.imgix.net/~text?txtsize=15&txt=No%20image&w=300&h=300">
+				</div>
+
+				<a class="item">
+					<div class="align-right">{{vm.products[$index].price | currency}}</div>
+				</a>
+			</div>
+
+			<div class="card col" ng-click="vm.showProductDetails(vm.products[$index + 1]._id)"
+				ng-style="{'visibility': !!vm.products[$index + 1] ? 'visible' : 'hidden'}">
+				<div class="item">
+					<h2>{{vm.products[$index + 1].title}}</h2>
+				</div>
+
+				<div class="item item-image product-image-container">
+					<img ng-if="!!vm.products[$index + 1].media[0]" ng-src="{{vm.products[$index + 1].media[0].uri}}">
+					<img ng-if="!vm.products[$index + 1].media[0]"
+						src="https://placeholdit.imgix.net/~text?txtsize=15&txt=No%20image&w=300&h=300">
+				</div>
+
+				<a class="item">
+					<div class="align-right">{{vm.products[$index + 1].price | currency}}</div>
+				</a>
+			</div>
+
+		</div>
+
+		<ion-infinite-scroll
+			on-infinite="vm.loadMore()"
+			immediate-check="false"
+			ng-if="vm.canLoadMore">
+		</ion-infinite-scroll>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,45 @@
+<ion-view view-title="Catalogs">
+	<ion-content>
+		<ion-refresher
+			pulling-text="Pull to refresh..."
+			on-refresh="vm.doRefresh()">
+		</ion-refresher>
+
+		<!--
+		 | http://stackoverflow.com/questions/27239735/ionic-framwork-gridlayout-with-multiple-rows-and-column-on-which-buttons-placed
+		 | http://stackoverflow.com/questions/23779773/angularjs-loops-and-formatting/23780288#23780288
+		 -->
+		<div ng-repeat="catalog in vm.catalogs" ng-if="$index%2==0" class="row">
+			<div class="card col" ng-click="vm.openCatalog(vm.catalogs[$index]._id)">
+				<div class="item item-image">
+					<img ng-src="{{vm.catalogs[$index].media[0].uri}}">
+				</div>
+
+				<div class="item align-right padding font-15x">
+					<i ng-if="!!vm.catalogs[$index].pdfUrl" class="fa fa-file-pdf-o padding-horizontal"></i>
+					<i ng-if="!!vm.catalogs[$index].url" class="fa fa-link"></i>
+				</div>
+			</div>
+
+			<div class="card col" ng-click="vm.openCatalog(vm.catalogs[$index + 1]._id)"
+				ng-style="{'visibility': !!vm.catalogs[$index + 1] ? 'visible' : 'hidden'}">
+				<div class="item item-image">
+					<img ng-src="{{vm.catalogs[$index + 1].media[0].uri}}">
+				</div>
+
+				<div class="item align-right padding font-15x">
+					<i ng-if="!!vm.catalogs[$index + 1].pdfUrl" class="fa fa-file-pdf-o padding-horizontal"></i>
+					<i ng-if="!!vm.catalogs[$index + 1].url" class="fa fa-link"></i>
+				</div>
+			</div>
+
+		</div>
+
+		<ion-infinite-scroll
+			on-infinite="vm.loadMore()"
+			immediate-check="false"
+			ng-if="vm.canLoadMore">
+		</ion-infinite-scroll>
+
+	</ion-content>
+</ion-view>
