@@ -28,7 +28,8 @@ const paths = {
         images: `${clientPath}/assets/images/**/*`,
         scripts: [
             `${clientPath}/**/!(*.spec|*.mock).js`,
-            `!${clientPath}/bower_components/**/*`
+            `!${clientPath}/bower_components/**/*`,
+            `!${clientPath}/thirdparty/**/*`
         ],
         styles: [`${clientPath}/{app,components}/**/*.scss`],
         mainStyle: `${clientPath}/app/app.scss`,
