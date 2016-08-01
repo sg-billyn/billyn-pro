@@ -19,6 +19,7 @@
                         controller : 'SampleController as vm'
                     }
                 },
+                authenticate: true,
                 resolve: {
                     SampleData: function (msApi)
                     {

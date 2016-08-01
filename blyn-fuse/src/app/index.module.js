@@ -21,6 +21,13 @@
             'app.quick-panel',
 
             // Sample
-            'app.sample'
+            'app.sample',
+
+            //auth
+            'app.auth',
+
+            //util
+            'app.util'
+
         ]);
 })();

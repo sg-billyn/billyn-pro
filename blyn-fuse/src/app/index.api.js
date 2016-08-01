@@ -1,5 +1,4 @@
-(function ()
-{
+(function () {
     'use strict';
 
     angular
@@ -7,8 +6,7 @@
         .factory('api', apiService);
 
     /** @ngInject */
-    function apiService($resource)
-    {
+    function apiService($resource) {
         /**
          * You can use this service to define your API urls. The "api" service
          * is designed to work in parallel with "apiResolver" service which you can
@@ -178,7 +176,24 @@
         var api = {};
 
         // Base Url
-        api.baseUrl = 'app/data/';
+        api.baseUrl = 'localhost:9000/api/';
+
+        api.user = $resource('/api/users/:id/:controller', {
+            id: '@_id'
+        }, {
+                changePassword: {
+                    method: 'PUT',
+                    params: {
+                        controller: 'password'
+                    }
+                },
+                get: {
+                    method: 'GET',
+                    params: {
+                        id: 'me'
+                    }
+                }
+            });
 
         // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
