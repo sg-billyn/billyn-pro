@@ -178,7 +178,7 @@
         // Base Url
         api.baseUrl = 'localhost:9000/api/';
 
-        api.user = $resource('/api/users/:id/:controller', {
+        api.user = $resource(api.baseUrl + '/api/users/:id/:controller', {
             id: '@_id'
         }, {
                 changePassword: {
