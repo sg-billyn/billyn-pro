@@ -2,26 +2,48 @@
 
 (function () {
 
-  function AuthService($rootScope, $q, $cookies, $location, Util, api) {
+  function AuthService($rootScope, $q, $http, $cookieStore, $location, Util, api) {
 
     var safeCb = Util.safeCb;
     var currentUser = {};
 
     $rootScope.current = $rootScope.current || {};
 
-    if ($cookies.get('token') && $location.path() !== '/logout') {
-      currentUser = api.User.get();
+    if ($cookieStore.get('token') && $location.path() !== '/logout') {
+      currentUser = api.user.get();
     }
 
     var Auth = {
-      /*
-      login: function ({loginId, password}, callback) {
-        return $http.post('http://localhost:9000/api/auth/local', {
-          //email: email,
-          loginId: loginId,
-          password: password
-        })
-      },*/
+
+      /**
+       * Authenticate user and save token
+       *
+       * @param  {Object}   user     - login info
+       * @param  {Function} callback - optional
+       * @return {Promise}
+       */
+      login: function (user, callback) {
+        var cb = callback || angular.noop;
+        var deferred = $q.defer();
+
+        $http.post('http://localhost:9000/auth/local', {
+          email: user.email,
+          password: user.password
+        }).
+          success(function (data) {
+            $cookieStore.put('token', data.token);
+            currentUser = api.user.get();
+            deferred.resolve(data);
+            return cb();
+          }).
+          error(function (err) {
+            this.logout();
+            deferred.reject(err);
+            return cb(err);
+          }.bind(this));
+
+        return deferred.promise;
+      },
 
       /**
      * Check if a user is logged in
@@ -33,7 +55,7 @@
       isLoggedIn: function (callback) {
         var ret = false;
 
-        if($cookies.get('token')){
+        if ($cookieStore.get('token')) {
           ret = true;
         }
         return $q.when(ret);
@@ -53,11 +75,11 @@
           });*/
       },
 
-      isLoggedInAsync: function(cb) {
+      isLoggedInAsync: function (cb) {
         if (currentUser.hasOwnProperty('$promise')) {
-          currentUser.$promise.then(function() {
+          currentUser.$promise.then(function () {
             cb(true);
-          }).catch(function() {
+          }).catch(function () {
             cb(false);
           });
         } else if (currentUser.hasOwnProperty('_id')) {
@@ -68,7 +90,7 @@
       },
 
       logout: function () {
-        $cookies.remove('token');
+        $cookieStore.remove('token');
         currentUser = {};
       },
 
