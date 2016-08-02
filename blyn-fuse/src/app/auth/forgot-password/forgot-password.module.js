@@ -11,7 +11,7 @@
     {
         // State
         $stateProvider.state('app.auth_forgot-password', {
-            url      : '/auth/forgot-password',
+            url      : '/forgot-password',
             views    : {
                 'main@'                                 : {
                     templateUrl: 'app/core/layouts/content-only.html',

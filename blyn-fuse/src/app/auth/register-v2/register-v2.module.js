@@ -11,7 +11,7 @@
     {
         // State
         $stateProvider.state('app.auth_register-v2', {
-            url      : '/auth/register-v2',
+            url      : '/register-v2',
             views    : {
                 'main@'                          : {
                     templateUrl: 'app/core/layouts/content-only.html',

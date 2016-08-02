@@ -11,7 +11,7 @@
     {
         // State
         $stateProvider.state('app.auth_reset-password', {
-            url      : '/auth/reset-password',
+            url      : '/reset-password',
             views    : {
                 'main@'                                : {
                     templateUrl: 'app/core/layouts/content-only.html',
