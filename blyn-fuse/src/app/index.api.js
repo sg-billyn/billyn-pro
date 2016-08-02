@@ -176,7 +176,7 @@
         var api = {};
 
         // Base Url
-        api.baseUrl = 'localhost:9000/api/';
+        api.baseUrl = '';
 
         api.user = $resource(api.baseUrl + '/api/users/:id/:controller', {
             id: '@_id'

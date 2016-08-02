@@ -26,8 +26,8 @@
         var cb = callback || angular.noop;
         var deferred = $q.defer();
 
-        $http.post('http://localhost:9000/auth/local', {
-          email: user.email,
+        $http.post('/auth/local', {
+          loginId: user.email,
           password: user.password
         }).
           success(function (data) {
