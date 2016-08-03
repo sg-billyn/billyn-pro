@@ -11,7 +11,7 @@
     {
         // State
         $stateProvider.state('app.auth_lock', {
-            url      : '/pages/auth/lock',
+            url      : '/lock',
             views    : {
                 'main@'                      : {
                     templateUrl: 'app/core/layouts/content-only.html',
