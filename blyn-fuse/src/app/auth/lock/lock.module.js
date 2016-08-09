@@ -28,12 +28,15 @@
         // Translation
         $translatePartialLoaderProvider.addPart('app/auth/lock');
 
+        /*
+
         // Navigation
         msNavigationServiceProvider.saveItem('auth.lock', {
             title : 'Lock Screen',
             state : 'app.auth_lock',
             weight: 7
         });
+        */
     }
 
 })();

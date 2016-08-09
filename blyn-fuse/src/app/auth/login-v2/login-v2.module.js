@@ -25,6 +25,8 @@
             bodyClass: 'login-v2'
         });
 
+        /*
+
         // Translation
         $translatePartialLoaderProvider.addPart('app/auth/login-v2');
 
@@ -34,6 +36,7 @@
             state : 'app.auth_login-v2',
             weight: 2
         });
+        */
     }
 
 })();

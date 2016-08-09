@@ -22,6 +22,7 @@
 
             // Sample
             'app.sample',
+            'app.spaces',
 
             //auth
             'app.auth',

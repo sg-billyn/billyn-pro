@@ -197,6 +197,18 @@
 
         // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
+        api.space = $resource(api.baseUrl + '/api/spaces/:id/:controller', {
+            id: '@_id'
+        }, {
+                getMySpaces: {
+                    method: 'GET',
+                    isArray: true,
+                    params: {
+                        id: 'me'
+                    }
+                }
+            });
+
         return api;
     }
 

@@ -1,7 +1,6 @@
 {
     "LOGIN": {
-        "BILLYN_PLATFORM": "BILLYN PLATFORM",
-        "TITLE": "Log in to your account",
+        "TITLE": "CHESES LOGIN：",
         "EMAIL": "Email",
         "PASSWORD": "Password",
         "REMEMBER_ME": "Remember Me",

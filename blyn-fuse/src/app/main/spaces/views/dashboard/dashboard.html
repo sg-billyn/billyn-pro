@@ -1,0 +1,82 @@
+<div id="dashboard-space" class="page-layout blank" layout="row">
+
+    <!-- CENTER -->
+    <div class="center" flex ms-scroll>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <!-- WIDGET GROUP -->
+            <div class="widget-group" layout="row" flex="100" layout-wrap>
+
+                <!-- WIDGET  -->
+                <ms-widget ng-repeat="space in vm.mySpaces" flippable="true" layout="column" flex="100" flex-gt-xs="50" flex-gt-md="25">
+
+                    <!-- Front -->
+                    <ms-widget-front class="white-bg">
+                        <div class="pl-16 pr-8 pv-16 h-55" layout="row" layout-align="space-between center">
+                            <div class="h3">{{space.alias}}</div>
+
+                            <md-menu>
+                                <md-button class="md-icon-button" ng-click="$mdOpenMenu()" aria-label="more">
+                                    <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                                </md-button>
+
+                                <md-menu-content width="2">
+                                    <md-menu-item>
+                                        <md-button ng-click="flipWidget(space)" aria-label="Flip widget">
+                                            Details
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="refreshWidget(space)" aria-label="Refresh widget">
+                                            Refresh
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </div>
+
+                        <div ng-repeat="app in space.apps" class="pt-8 pb-32" layout="column" layout-align="start start">
+                            <div class="h3 secondary-text font-weight-500">{{app.alias}}</div>                         
+                                <div ng-repeat="nut in app.nuts">
+                                    <div class="p-12" layout="row" layout-align="start start">
+                                   <span class="h4 secondary-text font-weight-500">{{nut.alias}}:</span> <span ng-repeat="permitRole in nut.permitRoles" class="h4 ml-8"><a href="#">{{permitRole.permit.alias}}</a></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-16 grey-50-bg border-top" layout="row" layout-align="start center">
+                            <span class="h4 secondary-text text-truncate">我的角色:</span>
+                            <span class="h4 ml-8">admin</span>
+                        </div>
+                    </ms-widget-front>
+                    <!-- / Front -->
+
+                    <!-- Back -->
+                    <ms-widget-back class="p-16 white-bg">
+                        <div class="flip-to-front">
+                            <md-button class="md-icon-button" ng-click="flipWidget()" aria-label="Flip widget">
+                                <md-icon md-font-icon="icon-close" class="s16"></md-icon>
+                            </md-button>
+                        </div>
+
+                        <div>
+                            detail
+                        </div>
+                    </ms-widget-back>
+                    <!-- / Back -->
+
+                </ms-widget>
+                <!-- / WIDGET  -->
+
+            </div>
+            <!-- / WIDGET GROUP -->
+
+        </div>
+        <!-- / CONTENT -->
+
+    </div>
+    <!-- / CENTER -->
+
+</div>
