@@ -1,6 +1,9 @@
-'use strict';
-
 (function () {
+
+  'use strict';
+
+  angular.module('app.auth')
+    .factory('Auth', AuthService);
 
   function AuthService($rootScope, $q, $http, $cookieStore, $location, Util, api) {
 
@@ -100,7 +103,6 @@
 
   }
 
-  angular.module('app.auth')
-    .factory('Auth', AuthService);
+
 
 })();

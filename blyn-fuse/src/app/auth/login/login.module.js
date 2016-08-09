@@ -28,6 +28,8 @@
         // Translation
         $translatePartialLoaderProvider.addPart('app/auth/login');
 
+        /*
+
         // Navigation
         msNavigationServiceProvider.saveItem('auth', {
             title : 'Authentication',
@@ -40,6 +42,7 @@
             state : 'app.auth_login',
             weight: 1
         });
+        */
     }
 
 })();

@@ -25,6 +25,8 @@
             bodyClass: 'forgot-password'
         });
 
+        /*
+
         // Translation
         $translatePartialLoaderProvider.addPart('app/auth/forgot-password');
 
@@ -34,6 +36,7 @@
             state : 'app.auth_forgot-password',
             weight: 5
         });
+        */
     }
 
 })();

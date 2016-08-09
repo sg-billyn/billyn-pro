@@ -28,12 +28,15 @@
         // Translate
         $translatePartialLoaderProvider.addPart('app/auth/register-v2');
 
+        /*
+
         // Navigation
         msNavigationServiceProvider.saveItem('auth.register-v2', {
             title : 'Register v2',
             state : 'app.auth_register-v2',
             weight: 4
         });
+        */
     }
 
 })();
